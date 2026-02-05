@@ -2,132 +2,117 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Just One Question</title>
+<title>One Question</title>
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
-        font-family: "Segoe UI", sans-serif;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        overflow: hidden;
-    }
-
-    .content {
-        max-width: 700px;
-        padding: 40px;
-    }
-
-    h1 {
-        font-size: 48px;
-        margin-bottom: 20px;
-    }
-
-    p {
-        font-size: 22px;
-        line-height: 1.7;
-        opacity: 0.95;
-    }
-
-    .question {
-        margin: 35px 0;
-        font-size: 32px;
-        font-weight: bold;
-    }
-
-    button {
-        padding: 14px 34px;
-        font-size: 18px;
-        border: none;
-        border-radius: 40px;
-        cursor: pointer;
-        margin: 12px;
-    }
-
-    .yes {
-        background: white;
-        color: #d62828;
-    }
-
-    .no {
-        background: rgba(255,255,255,0.35);
-        color: white;
-        position: absolute;
-    }
-
-    .heart {
-        position: absolute;
-        font-size: 22px;
-        animation: float 6s linear infinite;
-        opacity: 0.8;
-    }
-
-    @keyframes float {
-        from { transform: translateY(100vh); opacity: 0; }
-        to   { transform: translateY(-10vh); opacity: 1; }
-    }
+body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
+    font-family:Segoe UI, sans-serif;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+button{
+    padding:14px 32px;
+    font-size:18px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    margin:10px;
+}
+.yes{background:white;color:#d62828}
+.no{background:rgba(255,255,255,0.3);color:white;position:absolute}
+.section{max-width:800px;padding:40px}
+.gifts button{background:white;color:#d62828}
+.collage{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:25px;
+}
+.box{
+    height:150px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.85);
+    color:#d62828;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
 </style>
 </head>
 <body>
 
-<div class="content">
+<div class="section" id="main">
     <h1>Hey 💌</h1>
-    <p>
-        Some questions don’t need long speeches.<br>
-        They just need the right moment.
-    </p>
-
-    <div class="question">
-        Will you be my Valentine?
-    </div>
-
-    <button class="yes" onclick="yes()">Yes ❤️</button>
-    <button class="no" id="no" onmouseover="escapeNo()">No 🙃</button>
+    <p>Some questions don’t need long speeches.</p>
+    <h2>Will you be my Valentine?</h2>
+    <button class="yes" onclick="showGifts()">Yes ❤️</button>
+    <button class="no" id="no" onmouseover="moveNo()">No 🙃</button>
 </div>
 
 <script>
-function yes() {
-    document.body.innerHTML = `
-    <div style="
-        height:100vh;
-        width:100%;
-        background: linear-gradient(135deg,#ff758f,#ff4d6d);
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        text-align:center;
-        font-family:Segoe UI;
-        color:white;
-        padding:40px;">
-        <div>
-            <h1 style="font-size:56px;">You chose perfectly ❤️</h1>
-            <p style="font-size:24px;">
-                This is officially my favorite answer.
-            </p>
-        </div>
-    </div>`;
+function showGifts(){
+document.getElementById("main").innerHTML = `
+    <h1>You unlocked 3 gifts 🎁</h1>
+    <p>Choose carefully.</p>
+    <div class="gifts">
+        <button onclick="poem()">Gift 1 ✨</button>
+        <button onclick="collage()">Gift 2 💕</button>
+        <button onclick="date()">Gift 3 🌙</button>
+    </div>
+`;
 }
 
-function escapeNo() {
-    const btn = document.getElementById("no");
-    btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    btn.style.top  = Math.random() * (window.innerHeight - 50) + "px";
+function poem(){
+document.getElementById("main").innerHTML = `
+    <h1>For You ✍️</h1>
+    <p>
+    I liked you without a reason,<br>
+    stayed when distance tried to win.<br>
+    Time tested us, silence shaped us,<br>
+    and still—here we are.
+    </p>
+    <button onclick="showGifts()">Back 🎁</button>
+`;
 }
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "❤️";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
+function collage(){
+document.getElementById("main").innerHTML = `
+    <h1>Our Moments 💞</h1>
+    <p>No pictures needed. Just memories.</p>
+    <div class="collage">
+        <div class="box">Smile</div>
+        <div class="box">Late Calls</div>
+        <div class="box">Distance</div>
+        <div class="box">Us</div>
+    </div>
+    <button onclick="showGifts()">Back 🎁</button>
+`;
 }
 
-setInterval(createHeart, 400);
+function date(){
+document.getElementById("main").innerHTML = `
+    <h1>The Date 🌹</h1>
+    <p>
+    📍 Wherever you want<br>
+    🕖 Evening time<br>
+    🎶 Soft music, no rush<br>
+    💬 Just us, talking
+    </p>
+    <button onclick="showGifts()">Back 🎁</button>
+`;
+}
+
+function moveNo(){
+    const b=document.getElementById("no");
+    b.style.left=Math.random()*(window.innerWidth-100)+"px";
+    b.style.top=Math.random()*(window.innerHeight-50)+"px";
+}
 </script>
 
 </body>
